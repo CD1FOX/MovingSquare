@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://dkr4vjltnwv8m"]
+
+[ext_resource type="PackedScene" uid="uid://b6uurfsgbhvmv" path="res://Scenes/Environment/walls.tscn" id="1_jjgbg"]
+[ext_resource type="PackedScene" uid="uid://bev7isxv7avk2" path="res://Scenes/Environment/player.tscn" id="2_bo1nx"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="Walls" parent="Walls" instance=ExtResource("1_jjgbg")]
+position = Vector2(0, 648)
+scale = Vector2(16.465, 1)
+
+[node name="Walls2" parent="Walls" instance=ExtResource("1_jjgbg")]
+position = Vector2(-10, 658)
+rotation = -1.57092
+scale = Vector2(9.40166, 1.01504)
+
+[node name="Walls3" parent="Walls" instance=ExtResource("1_jjgbg")]
+position = Vector2(1152, 659)
+rotation = -1.57092
+scale = Vector2(9.40166, 1.01504)
+
+[node name="Player" parent="." instance=ExtResource("2_bo1nx")]
+position = Vector2(312, 190)
