@@ -8,12 +8,14 @@ const gravity = 1000.0
 const dashSpeed = 1000.0
 const dashDuration = 0.2
 const dashCooldown = 1.0
+const maxJump = 2
 
 #variables
 var dashTimer = 0.0
 var dashCooldownTimer = 0.0
 var isDashing = false
 var dashDirection = 0
+var jumpCount = 0
 
 
 #Main Physics
@@ -52,8 +54,12 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity.y += gravity * delta
 	else:
-		if Input.is_action_pressed("ui_accept"):
-			velocity.y = jumpVelocity
+		jumpCount = 0
+		
+	#Double Jump
+	if Input.is_action_just_pressed("ui_accept") and jumpCount < maxJump:
+		velocity.y = jumpVelocity
+		jumpCount += 1
 		
 	#Cooldown Countdown
 	if dashCooldownTimer > 0:
