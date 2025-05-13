@@ -23,10 +23,17 @@ func _physics_process(delta: float) -> void:
 	var direction = 0
 	var speed = normalSpeed
 	
+	#Slow Motion
+	if Input.is_action_just_pressed("Slow Motion"):
+		if Engine.time_scale == 1.0:
+			Engine.time_scale = 0.3
+		else:
+			Engine.time_scale = 1.0	
+	
 	#Left / Right Input
-	if Input.is_action_pressed("ui_left"):
+	if Input.is_action_pressed("Left"):
 		direction -= 1
-	if Input.is_action_pressed("ui_right"):
+	if Input.is_action_pressed("Right"):
 		direction += 1
 		
 	#Sprinting
@@ -57,7 +64,7 @@ func _physics_process(delta: float) -> void:
 		jumpCount = 0
 		
 	#Double Jump
-	if Input.is_action_just_pressed("ui_accept") and jumpCount < maxJump:
+	if Input.is_action_just_pressed("Jump") and jumpCount < maxJump:
 		velocity.y = jumpVelocity
 		jumpCount += 1
 		
