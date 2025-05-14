@@ -17,6 +17,10 @@ var isDashing = false
 var dashDirection = 0
 var jumpCount = 0
 
+#Slowmotion Variables
+var isSlowMotion = false
+var slowMotionTimer = 0.0
+var slowMotionCooldownTimer = 0.0
 
 #Main Physics
 func _physics_process(delta: float) -> void:
@@ -24,11 +28,20 @@ func _physics_process(delta: float) -> void:
 	var speed = normalSpeed
 	
 	#Slow Motion
-	if Input.is_action_just_pressed("Slow Motion"):
+	if Input.is_action_just_pressed("Slow Motion") and not isSlowMotion and slowMotionCooldownTimer <= 0:
+		isSlowMotion = true
 		if Engine.time_scale == 1.0:
 			Engine.time_scale = 0.3
-		else:
-			Engine.time_scale = 1.0	
+		slowMotionTimer = 1.0
+		slowMotionCooldownTimer = 3.0
+	
+	if isSlowMotion:
+		slowMotionTimer -= delta
+		if slowMotionTimer <= 0:
+			isSlowMotion = false
+	else:
+		Engine.time_scale = 1.0
+		
 	
 	#Left / Right Input
 	if Input.is_action_pressed("Left"):
@@ -71,6 +84,10 @@ func _physics_process(delta: float) -> void:
 	#Cooldown Countdown
 	if dashCooldownTimer > 0:
 		dashCooldownTimer -= delta
+		
+	if slowMotionCooldownTimer != 0:
+		slowMotionCooldownTimer -= delta
 	
+	print(slowMotionTimer)
 	#Move the character
 	move_and_slide()
