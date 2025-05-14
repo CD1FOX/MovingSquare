@@ -22,10 +22,18 @@ var isSlowMotion = false
 var slowMotionTimer = 0.0
 var slowMotionCooldownTimer = 0.0
 
+#Smooth Movement Variables
+
+
 #Main Physics
 func _physics_process(delta: float) -> void:
 	var direction = 0
 	var speed = normalSpeed
+	
+	if Input.is_action_pressed("Click"):
+		var testSpeed = 3
+		var target_position = get_global_mouse_position()
+		position = lerp(position, target_position, testSpeed * delta)
 	
 	#Slow Motion
 	if Input.is_action_just_pressed("Slow Motion") and not isSlowMotion and slowMotionCooldownTimer <= 0:
@@ -88,6 +96,6 @@ func _physics_process(delta: float) -> void:
 	if slowMotionCooldownTimer != 0:
 		slowMotionCooldownTimer -= delta
 	
-	print(slowMotionTimer)
+	
 	#Move the character
 	move_and_slide()
