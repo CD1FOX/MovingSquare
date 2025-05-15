@@ -1,6 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://bev7isxv7avk2"]
+[gd_scene load_steps=6 format=3 uid="uid://bev7isxv7avk2"]
 
 [ext_resource type="Script" uid="uid://cdf3hr2pih6a5" path="res://Entity/Player/player.gd" id="1_xw21c"]
+[ext_resource type="AudioStream" uid="uid://8hm2rnkkr8j8" path="res://Assets/Audio/WalkingSound.wav" id="2_x1f5c"]
+[ext_resource type="AudioStream" uid="uid://c3jt7fcggy2gc" path="res://Assets/Audio/DashingSound.mp3" id="3_qb0yx"]
+[ext_resource type="AudioStream" uid="uid://bexwcsio24d26" path="res://Assets/Audio/SlowMotionSound.wav" id="4_viyt1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_su0ot"]
 size = Vector2(81.255, 81.255)
@@ -20,3 +23,15 @@ metadata/_edit_use_anchors_ = true
 position = Vector2(-0.174999, -0.174999)
 scale = Vector2(1.235, 1.235)
 shape = SubResource("RectangleShape2D_su0ot")
+
+[node name="WalkingSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_x1f5c")
+volume_db = 24.0
+
+[node name="DashingSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_qb0yx")
+volume_db = 24.0
+
+[node name="SlowMotionSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_viyt1")
+volume_db = 24.0

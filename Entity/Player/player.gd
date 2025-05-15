@@ -36,6 +36,10 @@ func _physics_process(delta: float) -> void:
 	
 	#Slow Motion
 	if Input.is_action_just_pressed("Slow Motion") and not isSlowMotion and slowMotionCooldownTimer <= 0:
+		if not $SlowMotionSound.playing:
+			$SlowMotionSound.play()
+		else:
+			$SlowMotionSound.stop()
 		isSlowMotion = true
 		if Engine.time_scale == 1.0:
 			Engine.time_scale = 0.3
@@ -62,6 +66,10 @@ func _physics_process(delta: float) -> void:
 	
 	#Dash Input
 	if Input.is_action_just_pressed("Dash") and not isDashing and dashCooldownTimer <= 0:
+		if not $DashingSound.playing:
+			$DashingSound.play()
+		else:
+			$DashingSound.stop()
 		isDashing = true
 		dashTimer = dashDuration
 		dashDirection = direction if direction != 0 else sign(velocity.x)
@@ -95,6 +103,14 @@ func _physics_process(delta: float) -> void:
 		
 	if slowMotionCooldownTimer != 0:
 		slowMotionCooldownTimer -= delta
+		
+	#Handles Sound Effects
+	if direction != 0:
+		if not $WalkingSound.playing and is_on_floor():
+			$WalkingSound.play()
+	else:
+		$WalkingSound.stop()
+		
 	
 	
 	#Move the character
