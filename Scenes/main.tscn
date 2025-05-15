@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://dkr4vjltnwv8m"]
+[gd_scene load_steps=5 format=3 uid="uid://dkr4vjltnwv8m"]
 
-[ext_resource type="PackedScene" uid="uid://b6uurfsgbhvmv" path="res://Scenes/Environment/walls.tscn" id="1_jjgbg"]
-[ext_resource type="PackedScene" uid="uid://bev7isxv7avk2" path="res://Scenes/Entity/Player/player.tscn" id="2_bo1nx"]
+[ext_resource type="PackedScene" uid="uid://b6uurfsgbhvmv" path="res://Environment/walls.tscn" id="1_jjgbg"]
+[ext_resource type="PackedScene" uid="uid://bev7isxv7avk2" path="res://Entity/Player/player.tscn" id="2_bo1nx"]
+[ext_resource type="PackedScene" uid="uid://bauv7helxeaqg" path="res://Environment/Collectibles/coin.tscn" id="3_8gbba"]
+[ext_resource type="Script" uid="uid://c582thbt588og" path="res://Scenes/score_counter.gd" id="3_jjvhh"]
 
 [node name="Main" type="Node2D"]
 
@@ -23,3 +25,19 @@ scale = Vector2(9.40166, 1.01504)
 
 [node name="Player" parent="." instance=ExtResource("2_bo1nx")]
 position = Vector2(535, 163)
+
+[node name="ScoreCounter" type="Label" parent="."]
+offset_left = 3.0
+offset_top = 2.0
+offset_right = 149.0
+offset_bottom = 71.0
+theme_override_font_sizes/font_size = 50
+text = "Coins:"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("3_jjvhh")
+
+[node name="Collectibles" type="Node2D" parent="."]
+
+[node name="Coin" parent="Collectibles" instance=ExtResource("3_8gbba")]
+position = Vector2(125, 514)
