@@ -23,7 +23,7 @@ var slowMotionTimer = 0.0
 var slowMotionCooldownTimer = 0.0
 
 #Smooth Movement Variables
-
+var testSpeed = 2
 
 #Main Physics
 func _physics_process(delta: float) -> void:
@@ -31,7 +31,6 @@ func _physics_process(delta: float) -> void:
 	var speed = normalSpeed
 	
 	if Input.is_action_pressed("Click"):
-		var testSpeed = 3
 		var target_position = get_global_mouse_position()
 		position = lerp(position, target_position, testSpeed * delta)
 	
@@ -86,6 +85,7 @@ func _physics_process(delta: float) -> void:
 		
 	#Double Jump
 	if Input.is_action_just_pressed("Jump") and jumpCount < maxJump:
+		$ColorRect.color = Color(randf(), randf(), randf())
 		velocity.y = jumpVelocity
 		jumpCount += 1
 		
